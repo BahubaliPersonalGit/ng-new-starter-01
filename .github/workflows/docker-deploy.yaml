@@ -6,6 +6,9 @@ on:
 
 jobs:
   call:
+    permissions:
+      contents: read
+      packages: write
     uses: ./.github/workflows/docker-build-template.yml
     with:
       registry: ghcr.io
