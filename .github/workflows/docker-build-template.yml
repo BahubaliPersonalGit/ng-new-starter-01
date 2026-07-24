@@ -58,7 +58,7 @@ jobs:
     needs: build_test
     permissions:
       contents: read
-      packages: write
+      packages: read
     env:
       REGISTRY: ${{ inputs.registry }}
       IMAGE_NAME: ${{ inputs.image_name }}
