@@ -6,9 +6,6 @@ on:
 
 jobs:
   call:
-    permissions:
-      contents: read
-      packages: write
     uses: ./.github/workflows/docker-build-template.yml
     with:
       registry: ghcr.io
@@ -17,19 +14,19 @@ jobs:
       push: true
       tags: '["latest"]'
 
-  # deploy_staging:
-  #   name: Deploy to Staging
-  #   runs-on: ubuntu-latest
-  #   needs: build_and_push
-  #   environment:
-  #     name: staging
-  #     url: https://staging.example.com
-  #   steps:
-  #     - name: Deploy to Staging Server
-  #       env:
-  #         ENV_LABEL: ${{ secrets.STAGING_LABEL }}
-  #         IMAGE_TAG: sha-${{github.sha}}
+  deploy_staging:
+    name: Deploy to production server
+    runs-on: ubuntu-latest
+    needs: build_and_push
+    environment:
+      name: production
+      url: https://production.example.com
+    steps:
+      - name: Deploy to Production Server
+        env:
+          ENV_LABEL: ${{ secrets.PRODUCTION_LABEL }}
+          IMAGE_TAG: sha-${{github.sha}}
 
-  #       run: |
-  #         echo "Deploying to staging server..."
-  #     # docker container run -d -p 8080:8080 -e APP_ENVIRONMENT="$ENV_LABEL" ${{env.REGISTRY}}/${{env}}
+        run: |
+          echo "Deploying to production server..."
+      # docker container run -d -p 8080:8080 -e APP_ENVIRONMENT="$ENV_LABEL" ${{env.REGISTRY}}/${{env}}
