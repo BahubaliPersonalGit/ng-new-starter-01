@@ -10,7 +10,7 @@ jobs:
     with:
       registry: ghcr.io
       image_name: ${{ github.repository }}
-      node_versions: '["20","22","24"]'
+      node_versions: '["22","24"]'
       push: true
       tags: '["latest"]'
 
