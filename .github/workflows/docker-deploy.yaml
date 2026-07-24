@@ -13,8 +13,6 @@ jobs:
       node_versions: '["18","20"]'
       push: true
       tags: '["latest"]'
-    secrets:
-      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
   # deploy_staging:
   #   name: Deploy to Staging
